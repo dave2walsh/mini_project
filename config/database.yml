@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: wordjack_test_development
+  database: my_development
   pool: 5
   username: dave
   password: daddyo
@@ -41,7 +41,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: wordjack_test_test
+  database: my_test
   pool: 5
   username: dave
   password: daddyo
@@ -49,7 +49,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: wordjack_test_production
+  database: my_production
   pool: 5
   username: dave
   password: daddyo

@@ -1,4 +1,13 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
-
-
+Create user model for registration
+    Test to see if the user object responds to the following methods (or if the user table has these attributes):
+        name
+        email
+        password_digest
+        password
+        password_confirmation
+        authenticate
+    Test validations for the following attributes (properties tested for are in square brackets):
+        name => [presence of, length]
+        email => [presence of, format, uniqueness]
+        password_digest => [length]
+		user_modelling
