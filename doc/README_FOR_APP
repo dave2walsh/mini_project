@@ -11,3 +11,13 @@ Create user model for registration
         email => [presence of, format, uniqueness]
         password_digest => [length]
 		user_modelling
+Do integration testing for static pages to test for the presence of elements
+    Test static contents on the homepage
+    Test links on the page
+Do integration testing for registration to test user interaction
+    Test links on the page
+    Test input fields on page for content (see how app behaves with valid/invalid data)
+Do controller testing for registrations
+    Test variable assignment
+    Test HTTP verb usage
+    Test whether or not the new registrant is added based on input data
