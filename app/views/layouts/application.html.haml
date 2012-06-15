@@ -1,13 +1,25 @@
 !!! 5
 %html
   %head
-    %title Daddy's Layout
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body
-    = link_to("Home", root_path)
-    = link_to("Registration", new_user_path)
-    =flash.each do |key, value|
-      =content_tag(:div, value, :class => "flash_#{key}")
-    = yield
+  %body{id: "main", class: "block_middle"}
+    %header{:id=>"main_header"}
+      = link_to("Home", root_path)
+      -if(logged_in?)
+        %br/
+        %br/
+        You are logged in as
+        %span{class: 'bold_text'}
+          = @current_user.name
+        = link_to("Logout", logout_path)
+      -else
+        = link_to("Registration", new_user_path)
+        = link_to("Login", login_path)
+      -flash.each do |key, value|
+        =content_tag(:div, value, :class => "flash_#{key}")
+    %section
+      %article{:id=>"main_content"}
+        = yield
+    %div{id: 'translucent_background'}

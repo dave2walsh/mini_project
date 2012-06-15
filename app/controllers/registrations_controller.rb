@@ -7,6 +7,7 @@ class RegistrationsController < ApplicationController
   def create
     @registrant = User.new(params[:user])
     if @registrant.save
+      login @registrant
       flash[:success] = "You have created a new registrant!"
       redirect_to root_url
     else

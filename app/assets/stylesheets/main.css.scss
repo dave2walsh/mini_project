@@ -1,0 +1,129 @@
+$form_width: 500px;
+$above_translucent_background: 200;
+
+@mixin bottom_radius($radius){
+    -webkit-border-bottom-left-radius:$radius;
+    -moz-border-radius-bottomleft:$radius;
+    border-bottom-left-radius:$radius;
+    -webkit-border-bottom-right-radius:$radius;
+    -moz-border-radius-bottomright:$radius;
+    border-bottom-right-radius:$radius;
+}
+
+@mixin all_radii($radius){
+  -webkit-border-radius:$radius;
+  -moz-border-radius:$radius;
+  border-radius:$radius;
+}
+
+@mixin cursor_type($cursor){
+    cursor:$cursor;
+}
+
+.page_width{width: 1100px;}
+
+.block_middle{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.text_middle{text-align:center;}
+
+.align_right{text-align:right;}
+.align_left{text-align:left;}
+
+.table_display{display:table;}
+.table_row{display:table-row;}
+.table_cell{display:table-cell;}
+
+.bold_text{font-weight: bold;}
+
+.flash_error, .flash_success{
+    @extend .text_middle;
+    display: inline;
+    position:relative;
+    color: red;
+    z-index:$above_translucent_background;
+    float:right;
+}
+.flash_success{ color: green; }
+
+#translucent_background{
+    display:none;
+    margin:0px 0px 0px 0px;
+    position:fixed;
+    top:0px;
+    left:0px;
+    height: 100%;
+    width:100%;
+    z-index:100;
+    background-color:#000;
+    opacity:.7;
+}
+
+input[type="text"], input[type*="password"], #submit_registrant, #submit_login{
+    margin-left:7px;
+}
+
+#submit_registrant, #submit_login{
+    @include cursor_type(pointer);
+    margin-top:11px;
+}
+
+body#main{
+      @extend .page_width;
+      @include bottom_radius(6px);
+      margin-top:0px;
+      border:1px solid #bbb;
+      border-top:none;
+}
+
+header#main_header{
+    background-color: #ccc;
+    padding:10px;
+}
+
+article#main_content{
+    background-color: #eee;
+    padding: 22px 0 22px 0;
+}
+
+h1#page_header{
+    margin-top:0;
+    position:relative;
+    top:20px;
+}
+
+div#registration_form, div#login_form{
+    position:relative;
+    @include all_radii(6px);
+    @extend .block_middle;
+    border: 1px solid black;
+    width: $form_width;
+    z-index:$above_translucent_background;
+}
+
+#errorExplanation, #error_explanation{
+    position:relative;
+    @extend .block_middle;
+    width: $form_width;
+    padding: 5px 0 5px 7px;
+    right:6px;
+}
+
+.close_element{
+    @include cursor_type(pointer);
+    display:inline-block;
+    width:24px;
+    height:24px;
+    background-repeat:no-repeat;
+    background-image:url('close_window_dark.png');
+    background-position:top left;
+    &:hover{background-position:bottom left;}
+}
+
+#close_registration{
+    position:relative;
+    left: 465px;
+    bottom: 30px;
+}

@@ -22,6 +22,10 @@ describe "Registrations" do
 
           click_button "Create"
           page.should have_selector 'title', text: "Daddies Home Page"
+          page.should have_link('Logout', href: logout_path)
+          page.should_not have_link('Login', href: login_path)
+          page.should_not have_link('Registration', href: new_user_path)
+          should have_selector('div.flash_success', text: 'You have created a new registrant!')
         end
       end
 

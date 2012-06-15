@@ -21,3 +21,6 @@ Do controller testing for registrations
     Test variable assignment
     Test HTTP verb usage
     Test whether or not the new registrant is added based on input data
+Do integration testing for logging in/out
+    Test to ensure that only users with valid data can log in
+    Test to ensure that logged in/out users are routed correctly

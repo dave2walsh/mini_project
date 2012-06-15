@@ -1,13 +1,33 @@
 %title
   Daddies Login Page
-%h1
-  Login Page
-
-=form_for(:session, url: sessions_path) do |f|
-  =f.label :email
-  =f.text_field :email
+%div{id: "login_form"}
+  %h1{id: "page_header", class: "text_middle" } Login Form
   %br/
-  =f.label :password
-  =f.password_field :password
+  =form_for(:session, url: sessions_path) do |f|
+    %div{class: "block_middle table_display"}
+      %div{:class=>"table_row"}
+        %span{:class=>"align_right table_cell"}
+          =f.label :email
+        %span{:class=>"align_left table_cell"}
+          =f.text_field :email
+      %div{:class=>"table_row"}
+        %span{:class=>"align_right table_cell"}
+          =f.label :password
+        %span{:class=>"align_left table_cell"}
+          =f.password_field :password
+      %div{:class=>"table_row"}
+        %span{:class=>"align_right table_cell"}
+        %span{:class=>"align_left table_cell"}
+          =f.submit("Login", {id: "submit_login"})
+      %br/
+:javascript
+  $(document).ready(function() {
+    //Show the translucent_background div for the lightbox effect.
+    $('#translucent_background').show();
+    $('div#login_form').css({'background-color' : '#eee'});
 
-  =f.submit "Login"
+    if($('div.flash_error').length != 0){
+      setTimeout(function(){location.href="#{root_path}"},3000);
+    }
+
+  });

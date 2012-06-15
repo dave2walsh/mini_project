@@ -1,6 +1,15 @@
-%title
-  Daddies New Registration Page
-%h1
-  Registration Page
+%title Daddies New Registration Page
 
-=render(partial: "form", :locals=>{button_name: "Create"})
+%div{id: "registration_form"}
+  %h1{id: "page_header", class: "text_middle" } Registration Form
+  %span{id: "close_registration", class: "close_element", title: "Click to return to the homepage"}
+  =render(partial: "form", :locals=>{button_name: "Create"})
+
+:javascript
+  $(document).ready(function() {
+    //Show the translucent_background div for the lightbox effect.
+    $('#translucent_background').show();
+    $('div#registration_form').css({'background-color' : '#eee'});
+
+    $('#close_registration').click(function(){ location.href="#{root_path}" })
+  });
