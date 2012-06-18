@@ -28,6 +28,7 @@ $above_translucent_background: 200;
 }
 
 .text_middle{text-align:center;}
+.text_right{text-align:right;}
 
 .align_right{text-align:right;}
 .align_left{text-align:left;}
@@ -37,14 +38,20 @@ $above_translucent_background: 200;
 .table_cell{display:table-cell;}
 
 .bold_text{font-weight: bold;}
+.red_text{color:red}
+.green_text{color:green}
+
+a.login_link{text-decoration:none;font-weight:bold}
+a.login_link:hover{text-decoration:none;color:#444} /* a link when the user mouses over it */
+a.login_link:active{text-decoration:none;color:magenta} /* a link the moment it is clicked */
 
 .flash_error, .flash_success{
-    @extend .text_middle;
     display: inline;
     position:relative;
+    bottom:23px;
     color: red;
     z-index:$above_translucent_background;
-    float:right;
+    float:left;
 }
 .flash_success{ color: green; }
 
@@ -80,7 +87,6 @@ body#main{
 
 header#main_header{
     background-color: #ccc;
-    padding:10px;
 }
 
 article#main_content{
@@ -127,3 +133,10 @@ div#registration_form, div#login_form{
     left: 465px;
     bottom: 30px;
 }
+
+#user_authentication{
+    @extend .text_right;
+    padding: 0 11px 3px 0;
+    font-size: 11px;
+}
+

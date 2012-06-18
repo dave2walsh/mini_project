@@ -2,11 +2,13 @@
 #
 # Table name: users
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
+#  id              :integer         not null, primary key
+#  name            :string(255)
+#  email           :string(255)
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
+#  password_digest :string(255)
+#  remember_token  :string(255)
 #
 
 require 'spec_helper'
@@ -25,6 +27,7 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:remember_token) }
+  it { should respond_to(:contacts) }
 
   it { should be_valid }
 
@@ -99,8 +102,17 @@ describe User do
     end
   end
 
+  describe "a user should save correctly" do
+		specify { @user.save.should be_true}
+	end
+
   describe "remember the token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
   end
+
+  describe "association with contacts" do
+    it { should have_many(:contacts) }
+  end
+
 end

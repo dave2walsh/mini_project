@@ -1,0 +1,12 @@
+%title Your Contacts Page
+
+%table
+  %caption
+    =current_user.name
+    Contact List
+  %tr
+    %th Conact's Name
+  -@contacts.each do |contact|
+    %tr
+      %td{class: "contact_cell"}
+        =contact.name

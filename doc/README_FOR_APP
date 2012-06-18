@@ -11,6 +11,8 @@ Create user model for registration
         email => [presence of, format, uniqueness]
         password_digest => [length]
 		user_modelling
+	Test that the model saves correctly
+
 Do integration testing for static pages to test for the presence of elements
     Test static contents on the homepage
     Test links on the page
@@ -24,3 +26,14 @@ Do controller testing for registrations
 Do integration testing for logging in/out
     Test to ensure that only users with valid data can log in
     Test to ensure that logged in/out users are routed correctly
+    Tried to test with Selenium for Javascript timeout/redirect, but the testing framework ignores the redirect when the Javascript timeout is engaged.
+
+Create model for contacts
+    Test to see if the contact object responds to the following methods (or if the contacts table has these attributes):
+        name
+        user_id
+    Test validations for the following attributes (properties tested for are in square brackets):
+        name => [presence of, length]
+    Test the contacts association
+        check if it belongs_to user and if user has_many contacts
+

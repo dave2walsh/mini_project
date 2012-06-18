@@ -1,6 +1,7 @@
 WordjackTest::Application.routes.draw do
   resources :users, controller: "registrations", only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :contacts
 
   match '/login',  to: 'sessions#new'
   match '/logout', to: 'sessions#destroy'
