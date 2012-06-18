@@ -1,1 +1,15 @@
 %title Create Your New Contact
+
+%div{id: "new_contact_form"}
+  %h1{id: "page_header", class: "text_middle" } New Contact Form
+  %span{id: "close_new_contact", class: "close_element", title: "Click to return to the homepage"}
+  =render(partial: "form", :locals=>{button_name: "Create"})
+
+:javascript
+  $(document).ready(function() {
+    //Show the translucent_background div for the lightbox effect.
+    $('#translucent_background').show();
+    $('div#new_contact_form').css({'background-color' : '#eee'});
+
+    $('#close_new_contact').click(function(){ location.href="#{root_path}" })
+  });

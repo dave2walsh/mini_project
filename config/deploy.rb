@@ -37,9 +37,9 @@ default_run_options[:pty] = true
 set :keep_releases, 5
 
 #Deoployment locations
-role :web, "192.168.2.7"                          # Your HTTP server, Apache/etc
-role :app, "192.168.2.7"                          # This may be the same as your `Web` server
-role :db,  "192.168.2.7", :primary => true # This is where Rails migrations will run
+role :web, "192.168.2.5"                          # Your HTTP server, Apache/etc
+role :app, "192.168.2.5"                          # This may be the same as your `Web` server
+role :db,  "192.168.2.5", :primary => true # This is where Rails migrations will run
 
 #Clean up old releases on each deploy
 after "deploy:restart", "deploy:cleanup"

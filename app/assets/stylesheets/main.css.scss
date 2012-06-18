@@ -72,7 +72,7 @@ input[type="text"], input[type*="password"], #submit_registrant, #submit_login{
     margin-left:7px;
 }
 
-#submit_registrant, #submit_login{
+#submit_registrant, #submit_login, #submit_contact{
     @include cursor_type(pointer);
     margin-top:11px;
 }
@@ -100,7 +100,7 @@ h1#page_header{
     top:20px;
 }
 
-div#registration_form, div#login_form{
+div#registration_form, div#login_form, div#new_contact_form{
     position:relative;
     @include all_radii(6px);
     @extend .block_middle;
@@ -128,7 +128,7 @@ div#registration_form, div#login_form{
     &:hover{background-position:bottom left;}
 }
 
-#close_registration{
+#close_registration, #close_new_contact{
     position:relative;
     left: 465px;
     bottom: 30px;

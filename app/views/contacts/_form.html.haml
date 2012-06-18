@@ -1,0 +1,14 @@
+%br/
+=form_for @contact do |f|
+  =render 'shared/error_messages', :target => @contact
+  %div{class: "block_middle table_display"}
+    %div{:class=>"table_row"}
+      %span{:class=>"align_right table_cell"}
+        =f.label :name
+      %span{:class=>"align_left table_cell"}
+        =f.text_field :name
+    %div{:class=>"table_row"}
+      %span{:class=>"align_right table_cell"}
+      %span{:class=>"align_left table_cell"}
+        =f.submit(button_name, {id: "submit_contact"})
+    %br/

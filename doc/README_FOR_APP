@@ -37,3 +37,16 @@ Create model for contacts
     Test the contacts association
         check if it belongs_to user and if user has_many contacts
 
+Do controller testing for contacts
+    Test variable assignment
+    Test HTTP verb usage
+    Test whether or not the new contact is added based on input data
+    Test whether or not an existing contact is updated based on input data
+    Test for filtering to ensure that only the correct user has access to methods such as index, edit, update, delete
+
+Do integration testing for contacts
+    Test access to index page based on user login status
+    Test filter for correct users on index page:
+        Only users with contacts are allowed to access this page
+        Users with contacts must only be able to view their own contacts
+

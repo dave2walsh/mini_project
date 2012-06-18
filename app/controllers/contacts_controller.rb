@@ -1,7 +1,7 @@
 
 class ContactsController < ApplicationController
   before_filter :logged_in_user
-  before_filter :correct_authorized_user, except: [:new]
+  before_filter :correct_authorized_user, except: [:new, :create]
 
   def new
     @contact = Contact.new
