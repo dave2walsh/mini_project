@@ -6,7 +6,6 @@ gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem "haml-rails"
 gem 'rvm'
-gem "passenger", '3.0.12'
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'
@@ -39,4 +38,10 @@ group :test do
   #System-dependent gems
   gem 'rb-inotify', '0.8.8'
   gem 'libnotify', '0.5.9'
+end
+
+gem :production do
+  gem 'daemon_controller', '1.0.0'
+  gem "passenger", '3.0.12'
+  gem 'i18n', '0.6.0'
 end

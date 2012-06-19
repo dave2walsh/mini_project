@@ -1,5 +1,7 @@
 require "rvm/capistrano"
 
+server_ip = "192.168.2.5"
+
 #Name of application
 set :application, "mini_test"
 
@@ -37,9 +39,13 @@ default_run_options[:pty] = true
 set :keep_releases, 5
 
 #Deoployment locations
-role :web, "192.168.2.5"                          # Your HTTP server, Apache/etc
-role :app, "192.168.2.5"                          # This may be the same as your `Web` server
-role :db,  "192.168.2.5", :primary => true # This is where Rails migrations will run
+role :web, server_ip                          # Your HTTP server, Apache/etc
+role :app, server_ip                          # This may be the same as your `Web` server
+role :db,  server_ip, :primary => true # This is where Rails migrations will run
+
+#Run tasks for rvm installation on server
+before 'deploy:setup', 'rvm:install_rvm'   # install RVM
+before 'deploy:setup', 'rvm:install_ruby'  # install Ruby and create gemset
 
 #Clean up old releases on each deploy
 after "deploy:restart", "deploy:cleanup"

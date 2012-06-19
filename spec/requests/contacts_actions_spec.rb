@@ -97,7 +97,6 @@ describe "ContactsActions" do
 
         click_button "Update"
         should have_selector 'title', text: "Your Contacts Page"
-
         should have_selector('td.contact_cell',    text: "#{contact_name}")
       end
     end

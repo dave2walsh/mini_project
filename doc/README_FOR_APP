@@ -1,8 +1,10 @@
 Testing strategies:
     Generally only things that can break the functionality of the application are tested
     Model testing is usually done first, followed by controller testing and integration tests, which are done to test the user interface.
-    Cucumber testing is considered redundant in this application, since it would only result in duplicating the rspec-capybara integrations tests. It would also necessitate maintaining a separate
-      testing framework, which would have added unnecessary overhead to the project.
+    Cucumber testing is considered redundant in this application, since it would only result in duplicating the rspec-capybara integrations tests.
+        It would also necessitate maintaining a separate testing framework, which would have added unnecessary overhead to the project. Cucumber is
+        to be used for acceptance testing (i.e. tests done to determine if the business requirements of a project are met), so it's very high level
+        and operates above the scope of UI interaction. It is not clear how cucumber can be used properly for this project.
 
 Create user model for registration
     Test to see if the user object responds to the following methods (or if the user table has these attributes):

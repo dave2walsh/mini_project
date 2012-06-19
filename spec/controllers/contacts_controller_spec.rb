@@ -9,7 +9,6 @@ describe ContactsController do
 
     #Must save the contact to test all actions except new and create, since the controller only allows access to the other actions when the user is logged in and has at least one contact.
     @contact.save
-
     log_in(user)
   end
 
