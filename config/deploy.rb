@@ -60,6 +60,6 @@ namespace :deploy do
     run "cd #{deploy_to}/current && bundle install"
   end
   task :restart do
-    run "#{sudo} kill -HUP `cat /opt/nginx/logs/nginx.pid`"
+    run "#{sudo} kill -HUP `cat /home/dave/server/logs/nginx.pid`"
   end
 end
