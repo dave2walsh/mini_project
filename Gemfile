@@ -40,7 +40,7 @@ group :test do
   gem 'libnotify', '0.5.9'
 end
 
-gem :production do
+group :production do
   gem 'daemon_controller', '1.0.0'
   gem "passenger", '3.0.12'
   gem 'i18n', '0.6.0'
