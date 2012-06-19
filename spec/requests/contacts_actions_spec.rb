@@ -4,9 +4,21 @@ describe "ContactsActions" do
 
   subject { page }
 
-  describe "access to contacts index page" do
-    let(:user_1) { FactoryGirl.create(:user, name: "freddy_1", email: "freddy_1@hawai.com", password: "freddyisin") }
+  let(:user_0) { FactoryGirl.create(:user, name: "freddy_0", email: "freddy_0@hawai.com", password: "freddyisin") }
+  let(:user_1) { FactoryGirl.create(:user, name: "freddy_1", email: "freddy_1@hawai.com", password: "freddyisin") }
+  let(:user_2) { FactoryGirl.create(:user, name: "freddy_2", email: "freddy_2@hawai.com", password: "freddyisin") }
 
+  before do
+    @contact_1 = user_1.contacts.build(name: "Contact Freddy 1")
+    @contact_2 = user_2.contacts.build(name: "Contact Freddy 2_1")
+    @contact_3 = user_2.contacts.build(name: "Contact Freddy 2_2")
+    @contact_1.save
+    @contact_2.save
+    @contact_3.save
+  end
+
+
+  describe "access to contacts index page" do
     before do
       visit contacts_path
     end
@@ -16,27 +28,17 @@ describe "ContactsActions" do
     end
 
     it "should not allow access to users who are logged in, but have no contacts" do
-      log_in(user_1)
+      log_in(user_0)
       visit contacts_path
       should have_selector 'title', text: "Create Your New Contact"
     end
 
     context "contacts on the page must belong to the current user" do
-      let(:user_2) { FactoryGirl.create(:user, name: "freddy_2", email: "freddy_2@hawai.com", password: "freddyisin") }
-
       before do
         #user_2 is the current user, so user_1's contact (Contact Freddy 1) should not be on the index page when user_1 accesses that page
-        @contact_1 = user_1.contacts.build(name: "Contact Freddy 1")
-        @contact_2 = user_2.contacts.build(name: "Contact Freddy 2")
-        @contact_3 = user_2.contacts.build(name: "Contact Freddy 3")
-        @contact_1.save
-        @contact_2.save
-        @contact_3.save
-
         log_in(user_2)
         visit contacts_path
       end
-
 
       it { should have_selector 'title', text: "Your Contacts Page" }
 
@@ -50,10 +52,8 @@ describe "ContactsActions" do
   end
 
   describe "creation of a new contact" do
-    let(:user) { FactoryGirl.create(:user) }
-
     before do
-      log_in(user)
+      log_in(user_0)
       visit new_contact_path
     end
 
@@ -80,13 +80,9 @@ describe "ContactsActions" do
   end
 
   describe "updating a current contact" do
-    let(:user_update) { FactoryGirl.create(:user, name: "freddy_update", email: "freddy_update@hawai.com", password: "freddyisin") }
-
     before do
-      @contact_update = user_update.contacts.build(name: "Contact Freddy Update")
-      @contact_update.save
-      log_in(user_update)
-      visit edit_contact_path(@contact_update)
+      log_in(user_1)
+      visit edit_contact_path(@contact_1)
     end
 
     it "should be on the edit page" do
@@ -117,12 +113,8 @@ describe "ContactsActions" do
   end
 
   describe "navigating the contacts links" do
-    let(:user_link) { FactoryGirl.create(:user, name: "freddy_link", email: "freddy_link@hawai.com", password: "freddyisin") }
-
     before do
-      @contact_link = user_link.contacts.build(name: "Linker Freddy Update")
-      @contact_link.save
-      log_in(user_link)
+      log_in(user_1)
       visit root_path
     end
 
@@ -140,12 +132,15 @@ describe "ContactsActions" do
       it "should go to the edit page" do
         click_link "edit"
         should have_selector 'title', text: "Edit Your Contact"
-        should have_selector("input", id: "contact_name", content: "#{@contact_link.name}")
+        should have_selector("input", id: "contact_name", content: "#{@contact_1.name}")
       end
     end
 
     context "check the delete link on the index page for a user with one contact" do
-      before { visit contacts_path }
+      before  do
+        log_in(user_1)
+        visit contacts_path
+      end
 
       it "should delete the contact and go to the contact creation page" do
         click_link "delete"
@@ -155,15 +150,14 @@ describe "ContactsActions" do
 
     context "check the delete link on the index page for a user with more than one contact" do
       before do
-        @contact_link_2 = user_link.contacts.build(name: "Linker Freddy Delete")
-        @contact_link_2.save
+        log_in(user_2)
         visit contacts_path
       end
 
       it "should delete the contact and go to the index page" do
         click_link "delete"
         should have_selector 'title', text: "Your Contacts Page"
-        should_not have_selector 'td', text: "#{@contact_link.name}"
+        should_not have_selector 'td', text: "#{@contact_2.name}"
       end
     end
 

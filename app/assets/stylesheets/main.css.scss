@@ -182,3 +182,16 @@ table#contacts_table{
     caption{font-weight:bold;}
 }
 
+div#home_description{
+    @include all_radii(20px);
+    @extend .block_middle;
+    font-size: 22px;
+    font-family: serif;
+    font-weight: bold;
+    color: #555;
+    border: 2px solid #444;
+    width: 400px;
+    padding: 11px;
+    text-align: justify;
+}
+
