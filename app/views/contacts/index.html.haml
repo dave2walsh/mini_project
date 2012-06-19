@@ -1,12 +1,18 @@
 %title Your Contacts Page
 
-%table
+%table{id: "contacts_table", class: "block_middle"}
   %caption
-    =current_user.name
-    Contact List
+    Contacts List
   %tr
-    %th Conact's Name
+    %th{class: "left_round"}
+      Names
+    %th
+    %th{class: "right_round"}
   -@contacts.each do |contact|
     %tr
       %td{class: "contact_cell"}
         =contact.name
+      %td{class: "text_middle"}
+        = link_to("edit", edit_contact_path(contact), class: "edit_link")
+      %td{class: "text_middle"}
+        = link_to "delete", contact, method: :delete, confirm: "Do you really want to delete this contact?", class: "delete_link"

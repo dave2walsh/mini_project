@@ -1,3 +1,9 @@
+Testing strategies:
+    Generally only things that can break the functionality of the application are tested
+    Model testing is usually done first, followed by controller testing and integration tests, which are done to test the user interface.
+    Cucumber testing is considered redundant in this application, since it would only result in duplicating the rspec-capybara integrations tests. It would also necessitate maintaining a separate
+      testing framework, which would have added unnecessary overhead to the project.
+
 Create user model for registration
     Test to see if the user object responds to the following methods (or if the user table has these attributes):
         name
@@ -27,6 +33,7 @@ Do integration testing for logging in/out
     Test to ensure that only users with valid data can log in
     Test to ensure that logged in/out users are routed correctly
     Tried to test with Selenium for Javascript timeout/redirect, but the testing framework ignores the redirect when the Javascript timeout is engaged.
+        So the selenium integration test is pending.
 
 Create model for contacts
     Test to see if the contact object responds to the following methods (or if the contacts table has these attributes):
@@ -49,4 +56,6 @@ Do integration testing for contacts
     Test filter for correct users on index page:
         Only users with contacts are allowed to access this page
         Users with contacts must only be able to view their own contacts
+    Test the outcome of entering valid/invalid data for creating/updating a contact
+    Test contact deletion
 

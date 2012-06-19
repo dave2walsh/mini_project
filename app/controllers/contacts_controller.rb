@@ -25,6 +25,7 @@ class ContactsController < ApplicationController
       flash[:success] = "You have created a new contact!"
       redirect_to contacts_url
     else
+      flash.now[:error] = "Contact creation has failed"
       render 'new'
     end
   end
@@ -32,17 +33,26 @@ class ContactsController < ApplicationController
   def update
     @contact = Contact.find(params[:id])
     if @contact.update_attributes(params[:contact])
-      flash[:success] = "You have updated your contact!"
+      flash[:success] = "You have successfully updated your contact!"
       redirect_to contacts_url
     else
+      flash.now[:error] = "Contact update has failed"
       render 'edit'
     end
+  end
+
+  def destroy
+    @contact = Contact.find(params[:id])
+    @contact.destroy
+    redirect_to contacts_url
   end
 
   #After the user is authorized he will be redirected to his intended destination, or go to the home page
   def correct_authorized_user
     @contacts = current_user.contacts
-    flash[:notice] = "Please create a new contact!"
-    redirect_to_target new_contact_path if @contacts.blank?
+    if(@contacts.blank?)
+      flash[:notice] = "Please create a new contact!"
+      redirect_to_target new_contact_path
+    end
   end
 end

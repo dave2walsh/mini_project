@@ -23,6 +23,7 @@ describe "ContactsActions" do
 
     context "contacts on the page must belong to the current user" do
       let(:user_2) { FactoryGirl.create(:user, name: "freddy_2", email: "freddy_2@hawai.com", password: "freddyisin") }
+
       before do
         #user_2 is the current user, so user_1's contact (Contact Freddy 1) should not be on the index page when user_1 accesses that page
         @contact_1 = user_1.contacts.build(name: "Contact Freddy 1")
@@ -76,6 +77,96 @@ describe "ContactsActions" do
         should have_selector 'title', text: "Create Your New Contact"
       end
     end
+  end
+
+  describe "updating a current contact" do
+    let(:user_update) { FactoryGirl.create(:user, name: "freddy_update", email: "freddy_update@hawai.com", password: "freddyisin") }
+
+    before do
+      @contact_update = user_update.contacts.build(name: "Contact Freddy Update")
+      @contact_update.save
+      log_in(user_update)
+      visit edit_contact_path(@contact_update)
+    end
+
+    it "should be on the edit page" do
+      should have_selector 'title', text: "Edit Your Contact"
+    end
+
+    context "with valid data" do
+      let(:contact_name) { "Carl Contact Update" }
+
+      it "should update the contact" do
+        fill_in "contact_name",    with: contact_name
+
+        click_button "Update"
+        should have_selector 'title', text: "Your Contacts Page"
+
+        should have_selector('td.contact_cell',    text: "#{contact_name}")
+      end
+    end
+    context "with invalid data" do
+      it "should not update the contact" do
+        fill_in "contact_name",    with: " "
+
+        click_button "Update"
+        should have_selector 'title', text: "Edit Your Contact"
+        should have_selector('div.flash_error', text: 'Contact update has failed')
+      end
+    end
+  end
+
+  describe "navigating the contacts links" do
+    let(:user_link) { FactoryGirl.create(:user, name: "freddy_link", email: "freddy_link@hawai.com", password: "freddyisin") }
+
+    before do
+      @contact_link = user_link.contacts.build(name: "Linker Freddy Update")
+      @contact_link.save
+      log_in(user_link)
+      visit root_path
+    end
+
+    it "should go to the new page when the 'new' link is clicked" do
+      click_link "Add a New Contact"
+      should have_selector 'title', text: "Create Your New Contact"
+    end
+    it "should go to the index page when the 'all' link is clicked" do
+      click_link "Show All Your Contacts"
+      should have_selector 'title', text: "Your Contacts Page"
+    end
+
+    context "check the edit links on the index page" do
+      before { visit contacts_path }
+      it "should go to the edit page" do
+        click_link "edit"
+        should have_selector 'title', text: "Edit Your Contact"
+        should have_selector("input", id: "contact_name", content: "#{@contact_link.name}")
+      end
+    end
+
+    context "check the delete link on the index page for a user with one contact" do
+      before { visit contacts_path }
+
+      it "should delete the contact and go to the contact creation page" do
+        click_link "delete"
+        should have_selector 'title', text: "Create Your New Contact"
+      end
+    end
+
+    context "check the delete link on the index page for a user with more than one contact" do
+      before do
+        @contact_link_2 = user_link.contacts.build(name: "Linker Freddy Delete")
+        @contact_link_2.save
+        visit contacts_path
+      end
+
+      it "should delete the contact and go to the index page" do
+        click_link "delete"
+        should have_selector 'title', text: "Your Contacts Page"
+        should_not have_selector 'td', text: "#{@contact_link.name}"
+      end
+    end
+
   end
 
 end

@@ -3,27 +3,27 @@
   =render 'shared/error_messages', :target => @registrant
   %div{class: "block_middle table_display"}
     %div{:class=>"table_row"}
-      %span{:class=>"align_right table_cell"}
+      %span{:class=>"text_right table_cell"}
         =f.label :name
-      %span{:class=>"align_left table_cell"}
+      %span{:class=>"text_left table_cell"}
         =f.text_field :name
     %div{:class=>"table_row"}
-      %span{:class=>"align_right table_cell"}
+      %span{:class=>"text_right table_cell"}
         =f.label :email
-      %span{:class=>"align_left table_cell"}
+      %span{:class=>"text_left table_cell"}
         =f.text_field :email
     %div{:class=>"table_row"}
-      %span{:class=>"align_right table_cell"}
+      %span{:class=>"text_right table_cell"}
         =f.label :password
-      %span{:class=>"align_left table_cell"}
+      %span{:class=>"text_left table_cell"}
         =f.password_field :password
     %div{:class=>"table_row"}
-      %span{:class=>"align_right table_cell"}
+      %span{:class=>"text_right table_cell"}
         =f.label :password_confirmation, "Confirmation"
-      %span{:class=>"align_left table_cell"}
+      %span{:class=>"text_left table_cell"}
         =f.password_field :password_confirmation
     %div{:class=>"table_row"}
-      %span{:class=>"align_right table_cell"}
-      %span{:class=>"align_left table_cell"}
+      %span{:class=>"text_right table_cell"}
+      %span{:class=>"text_left table_cell"}
         =f.submit(button_name, {id: "submit_registrant"})
     %br/

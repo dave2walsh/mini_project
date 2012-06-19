@@ -1,0 +1,15 @@
+%title Edit Your Contact
+
+%div{id: "edit_contact_form"}
+  %h1{id: "page_header", class: "text_middle" } New Contact Form
+  %span{id: "close_edit_contact", class: "close_element", title: "Click to return to the contacts page"}
+  =render(partial: "form", :locals=>{button_name: "Update"})
+
+:javascript
+  $(document).ready(function() {
+    //Show the translucent_background div for the lightbox effect.
+    $('#translucent_background').show();
+    $('div#edit_contact_form').css({'background-color' : '#eee'});
+
+    $('#close_edit_contact').click(function(){ location.href="#{contacts_path}" })
+  });

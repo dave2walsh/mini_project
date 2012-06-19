@@ -7,7 +7,7 @@ describe "Registrations" do
     before { visit root_path }
     it "should go to the registrations page when you click the 'Registration' link" do
       click_link "Registration"
-      page.should have_selector 'title', text: "Daddies New Registration Page"
+      should have_selector 'title', text: "Daddies New Registration Page"
     end
 
     describe "creating a new registrant" do

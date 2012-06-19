@@ -22,22 +22,13 @@
               %li{class: "last"}
                 %a{href: "#{contacts_path}", class: "parent"}
                   %span Contacts
-                %ul
+                %ul{class: "above_flash_notice"}
                   %li
-                    %a{href: "#"}
-                      %span Sub Item 3
+                    %a{href: "#{new_contact_path}"}
+                      %span Add a New Contact
                   %li
-                    %a{href: "#"}
-                      %span Sub Item 4
-                  %li
-                    %a{href: "#"}
-                      %span Sub Item 5
-                  %li
-                    %a{href: "#"}
-                      %span Sub Item 6
-                  %li
-                    %a{href: "#"}
-                      %span Sub Item 7
+                    %a{href: "#{contacts_path}"}
+                      %span Show All Your Contacts
         %div{id: "user_authentication"}
           -if(logged_in?)
             You are logged in as
@@ -47,8 +38,8 @@
             = link_to("Logout", logout_path, class: "login_link red_text")
           -else
             = link_to("Login", login_path, class: "login_link green_text")
-        -flash.each do |key, value|
-          =content_tag(:div, value, :class => "flash_#{key}")
+      -flash.each do |key, value|
+        =content_tag(:div, value, :class => "flash_#{key}")
     %section
       %article{:id=>"main_content"}
         = yield

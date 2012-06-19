@@ -8,7 +8,7 @@ describe "Statics" do
     it { should have_selector('title', text: page_title) }
     it "should go to the homepage when you click the 'Home' link" do
       click_link "Home"
-      page.should have_selector 'title', text: "Daddies Home Page"
+      should have_selector 'title', text: "Daddies Home Page"
     end
   end
 

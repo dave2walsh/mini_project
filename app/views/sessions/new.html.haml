@@ -6,18 +6,18 @@
   =form_for(:session, url: sessions_path) do |f|
     %div{class: "block_middle table_display"}
       %div{:class=>"table_row"}
-        %span{:class=>"align_right table_cell"}
+        %span{:class=>"text_right table_cell"}
           =f.label :email
-        %span{:class=>"align_left table_cell"}
+        %span{:class=>"text_left table_cell"}
           =f.text_field :email
       %div{:class=>"table_row"}
-        %span{:class=>"align_right table_cell"}
+        %span{:class=>"text_right table_cell"}
           =f.label :password
-        %span{:class=>"align_left table_cell"}
+        %span{:class=>"text_left table_cell"}
           =f.password_field :password
       %div{:class=>"table_row"}
-        %span{:class=>"align_right table_cell"}
-        %span{:class=>"align_left table_cell"}
+        %span{:class=>"text_right table_cell"}
+        %span{:class=>"text_left table_cell"}
           =f.submit("Login", {id: "submit_login"})
       %br/
 :javascript
