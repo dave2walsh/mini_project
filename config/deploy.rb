@@ -32,6 +32,9 @@ set :user, "dave"
 #ssh/sudo password
 set :password, "the_daddyo"
 
+#Compile assets in production
+load 'deploy/assets'
+
 #Use this to avoid "no tty present and no askpass program specified" error
 default_run_options[:pty] = true
 
