@@ -117,7 +117,7 @@ describe ContactsController do
       it "should redirect to 'show'" do
         response.should redirect_to(redirect_to contacts_url)
       end
-      it "should assign person instance variable" do
+      it "should assign contact instance variable" do
         assigns[:contact].should == @contact
         assigns[:contact].should be_kind_of(Contact)
       end

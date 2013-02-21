@@ -6,6 +6,8 @@ WordjackTest::Application.routes.draw do
   match '/login',  to: 'sessions#new'
   match '/logout', to: 'sessions#destroy'
 
+  get "statics/get_stuff"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
